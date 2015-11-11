@@ -1,0 +1,21 @@
+{
+	"name": "ezupload",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "",
+	"license": "public domain",
+
+	"preferGlobal": true,
+	"bin": {
+		"ezupload": "index.js"
+	},
+
+	"dependencies" : {
+		"aws-sdk": "^2.2.13",
+		"fibers": "^1.0.7"
+	}	
+}
