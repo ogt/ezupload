@@ -78,14 +78,26 @@ _.run(function () {
                 //bucket exists
             }
         });
-        bucket.putObject({
+        bucket.headObject({
             Key : key,
-            Body : data,
-        }, function (err) {
-            if (err)
-                console.log('failed to upload :(')
-            else
-                console.log('done: https://s3-us-west-2.amazonaws.com/' + bucket_name + '/' + key)
-        })
+            Body : data
+        }, function (err){
+                if (err){
+                    //object doesn't exist.Let's put it!
+                    bucket.putObject({
+                        Key : key,
+                        Body : data
+                    }, function (err) {
+                        if (err)
+                            console.log('failed to upload :(')
+                        else
+                            console.log('done: https://s3-us-west-2.amazonaws.com/' + bucket_name + '/' + key)
+                    });
+                    return;
+                }
+                console.log('file with name ' + key + ' already exists on server');
+            }
+        );
+
     }
 })
